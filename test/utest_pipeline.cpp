@@ -28,6 +28,11 @@ public:
     {
     }
 
+    void setValue(int value)
+    {
+        value_ = value;
+    }
+
     std::vector<int>* operator()(std::vector<int>& input_data) override
     {
         for (auto& x : input_data)
@@ -75,7 +80,8 @@ TEST(CTES_PIPELINE, EXECUTION_SUCCESS)
         KernelFilterAllStdVectorElementsNonNegative,
         KernelSumOfStdVec>;
 
-    Pipeline pipeline({ 2 }, {}, {});
+    Pipeline pipeline({ 0 }, {}, {});
+    pipeline.setValue(2);
 
     std::vector<int> v{ 2, 3, 4 };
     const auto res = pipeline.execute(v);
@@ -90,7 +96,8 @@ TEST(CTES_PIPELINE, EXECUTION_FAILURE)
         KernelFilterAllStdVectorElementsNonNegative,
         KernelSumOfStdVec>;
 
-    Pipeline pipeline({ 2 }, {}, {});
+    Pipeline pipeline({ 0 }, {}, {});
+    pipeline.setValue(2);
 
     std::vector<int> v{ 2, 1, 4 };
     const auto res = pipeline.execute(v);
