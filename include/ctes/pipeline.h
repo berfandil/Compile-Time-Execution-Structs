@@ -25,7 +25,7 @@ namespace ctes {
 ///        which may as well have the same address as the input - on
 //         success, or a nullptr on failure.
 template <class ...Kernels>
-class Pipeline : private Kernels...
+class Pipeline : public Kernels...
 {
 private:
 
